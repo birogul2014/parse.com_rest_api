@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>tormahiri</title>
+</head>
+<body>
+	<button onclick="load(1)">
+click me
+	</button>
+<script type="text/javascript">
+// 2014 10-14
+function load () {
+	var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://api.parse.com/1/classes/turlar", true);
+xhr.setRequestHeader("X-Parse-Application-Id", "hSNY3qCUgP6jYeb3dwG53huAGGd8YEHugCAjdgGR");
+xhr.setRequestHeader("X-Parse-REST-API-Key", "2rkTaxHnBJbKZvJsDmqdl4kHhqTI8QP9rzaFpPDi");
+xhr.setRequestHeader("Content-Type", "application/json");
+ 
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+  	var inkas=xhr.responseText
+  	console.log(inkas);
+  	var tm=JSON.parse(inkas);
+for(var has in tm.results){
+	console.log(tm.results[has].message);
+	bm=document.getElementById("title");
+	bm.innerHTML=tm.results[has].objectId;
+	sm=document.getElementById("desc");
+	sm.innerHTML=tm.results[has].message;
+}
+
+
+
+  }
+}
+   
+//var data = JSON.stringify({ message: "Hello world!" });
+xhr.send();
+}
+</script>
+<span id="title"></span>
+<p id="desc"></p>
+</body>
+</html>
